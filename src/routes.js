@@ -26,6 +26,7 @@ import Games from "views/Games";
 import GameDetailPage from "views/GameDetailPage";
 import Notifications from "views/Notifications";
 import GameAddPage from "views/GameAddPage";
+import PlayerDetailPage from "views/PlayerDetailPage";
 
 var routes = [
   {
@@ -61,6 +62,13 @@ var routes = [
     name: "Game",
     icon: "nc-icon nc-pin-3",
     component: GameDetailPage,
+    layout: "/admin",
+  },
+  {
+    path: "/player/:id",
+    name: "Player",
+    icon: "nc-icon nc-pin-3",
+    component: PlayerDetailPage,
     layout: "/admin",
   },
   {

@@ -1,43 +1,35 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Card, CardBody, CardHeader, CardTitle, Table } from 'reactstrap';
 
-const GameDetail = (props) => {
-  const { game } = props;
-  if (!game || game.length === 0) return <p>No game, sorry</p>;
+const PlayerDetail = (props) => {
+  const { player } = props;
+  if (!player || player.length === 0) return <p>No player, sorry</p>;
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag="h4">Game {new Date(game.name).toLocaleString()}</CardTitle>
+        <CardTitle tag="h4">{player.Name}</CardTitle>
       </CardHeader>
       <CardBody>
-        <div className="game-detail--left">bord hier</div>
-        <div className="game-detail--right">
-          <CardTitle tag="h4">Players</CardTitle>
+        <div className="player-detail--right">
           <Table responsive>
             <thead className="text-primary">
               <tr>
-                {game.players.map((item) => {
-                  return (
-                    <th key={item.id}>{item.Name}</th>
-                  );
-                })}
+                <th>Gespeelde games</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                {game.players.map((item) => {
+                {player.games.map((item) => {
                   return (
-                    <td key={item.id}>{game.startScore}</td>
+                    <tr>
+                      <td key={item.id}>
+                      <NavLink to={'/admin/game/' + item.id}>
+                        {new Date(item.name).toLocaleString()}
+                      </NavLink>
+                      </td>
+                    </tr>
                   );
                 })}
-              </tr>
-              <tr>
-                {game.players.map((item) => {
-                  return (
-                    <td key={item.id}>{item.Name}</td>
-                  );
-                })}
-              </tr>
             </tbody>
           </Table>
         </div>
@@ -45,4 +37,4 @@ const GameDetail = (props) => {
     </Card>
   );
 };
-export default GameDetail;
+export default PlayerDetail;

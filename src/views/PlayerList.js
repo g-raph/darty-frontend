@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Table } from 'reactstrap';
 
 const PlayerList = (props) => {
@@ -15,10 +16,10 @@ const PlayerList = (props) => {
         <tbody>
           {players.map((item) => {
             return (
-              <tr key={item.id}>
-                <td>{item.Name}</td>
-                <td className="text-right">0</td>
-              </tr>
+                <tr key={item.id} >
+                  <td><NavLink to={'/admin/player/' + item.id}>{item.Name}</NavLink></td>
+                  <td className="text-right">0</td>
+                </tr>
             );
           })}
         </tbody>
