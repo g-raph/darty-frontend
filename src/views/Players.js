@@ -39,79 +39,6 @@ function Players() {
     });
   }, [setAppState]);
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     error: null,
-  //     isLoaded: false,
-  //     items: [],
-  //     formValue: ''
-  //   };
-  //   this.handleChange = this.handleChange.bind(this);
-  //   this.handleSubmit = this.handleSubmit.bind(this);
-  // }
-
-  // componentDidMount() {
-  //   fetch('http://localhost:1337/players')
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         this.setState({
-  //           isLoaded: true,
-  //           items: result
-  //         });
-  //       },
-  //       (error) => {
-  //         this.setState({
-  //           isLoaded: true,
-  //           error
-  //         });
-  //       }
-  //     )
-  // }
-
-  // handleChange(event) {
-  //   this.setState({formValue: event.target.value});
-  // }
-
-  // handleSubmit(event) {
-  //   const playerName = this.state.formValue;
-  //   const playerSlug = playerName.toLowerCase();
-  //   const playerObj = {
-  //     Name: playerName,
-  //     slug: playerSlug
-  //   };
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(playerObj)
-  //   };
-  //   fetch('http://localhost:1337/players', requestOptions)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         this.state.items.concat([data]);
-  //       });
-  //   fetch("http://localhost:1337/players")
-  //       .then(res => res.json())
-  //       .then(
-  //         (result) => {
-  //           this.setState({
-  //             isLoaded: true,
-  //             items: result
-  //           });
-  //         },
-  //         (error) => {
-  //           this.setState({
-  //             isLoaded: true,
-  //             error
-  //           });
-  //         }
-  //       );
-  //   this.setState({
-  //     formValue: ''
-  //   })
-  //   event.preventDefault();
-  // }
   return (
     <>
       <div className="content">
@@ -120,13 +47,6 @@ function Players() {
             <Card>
               <CardHeader>
                 <CardTitle tag="h4">Spelers</CardTitle>
-                {/* <form onSubmit={this.handleSubmit}>
-                  <label>
-                    New player:
-                    <input type="text" value={this.state.formValue} onChange={this.handleChange} />
-                  </label>
-                  <input type="submit" value="Add" />
-                </form> */}
               </CardHeader>
               <CardBody>
                 <PlayerListLoading isLoading={appState.loading} players={appState.players} />

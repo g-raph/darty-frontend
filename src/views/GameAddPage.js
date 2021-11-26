@@ -38,7 +38,6 @@ function GameAddPage() {
     axios
       .get(apiUrl).then((players) => {
         const allPlayers = players.data;
-        console.log('!!!', allPlayers);
         setAppState({ loading: false, players: allPlayers });
       });
   }, [setAppState]);
@@ -58,64 +57,3 @@ function GameAddPage() {
 }
 
 export default GameAddPage;
-
-// constructor(props) {
-//   super(props);
-//   this.state = {
-//     formGameValue: 501,
-//     allPlayers: [],
-//     selectedPlayers: []
-//   };
-//   this.handleGameValueChange = this.handleGameValueChange.bind(this);
-//   this.handleSelectedPlayersChange = this.handleSelectedPlayersChange.bind(this);
-//   this.handleSubmit = this.handleSubmit.bind(this);
-// }
-
-// componentDidMount() {
-//   fetch("http://localhost:1337/players")
-//     .then(res => res.json())
-//     .then(
-//       (result) => {
-//         this.setState({
-//           allPlayers: result
-//         });
-//       },
-//       (error) => {
-//         this.setState({
-//           error
-//         });
-//       }
-//     )
-// }
-
-// handleGameValueChange(event) {
-//   console.log(event);
-//   this.setState({ formGameValue: event.target.value });
-// }
-
-// handleSelectedPlayersChange(item, event) {
-//   const selectedPlayers = this.state.selectedPlayers;
-//   selectedPlayers.push(item);
-//   this.setState({ selectedPlayers: selectedPlayers });
-//   console.log(this.state);
-// }
-
-// handleSubmit() {
-//   const gameStartValue = this.state.formGameValue;
-//   const selectedPlayers = this.state.selectedPlayers;
-//   const gameObj = {
-//     name: new Date(),
-//     startScore: gameStartValue,
-//     players: selectedPlayers
-//   };
-//   const requestOptions = {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(gameObj)
-//   };
-//   fetch('http://localhost:1337/games', requestOptions)
-//     .then(response => response.json())
-//     .then(data => {
-//       NavigateTo('/game/' + data.id);
-//     });
-// }
