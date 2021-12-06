@@ -20,6 +20,7 @@ export const getPlayers = () => async dispatch => {
 export const getPlayer = (id) => async dispatch => {
     try{
         const res = await axios.get(`http://localhost:1337/players/${id}`);
+        console.log('res', res);
         dispatch( {
             type: GET_PLAYER,
             payload: res.data

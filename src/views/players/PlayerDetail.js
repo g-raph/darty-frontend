@@ -57,7 +57,7 @@ class PlayerDetail extends Component {
 
 const mapStateToProps = (state) => {
   console.log('stateobj', state);
-  return ({ player: state.players.player, loading: state.players.loading })
+  return ({ player: state.player })
 }
 
 export default connect(mapStateToProps, { getPlayer })(PlayerDetail)
