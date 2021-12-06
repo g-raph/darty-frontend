@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import { Col, Row } from "reactstrap";
+import { getGame } from "./Api";
 import GameDetail from "./GameDetail";
 import ListLoading from "./ListLoading";
 
@@ -10,16 +10,14 @@ function GameDetailPage() {
   const GameDetailLoading = ListLoading(GameDetail);
   const [appState, setAppState] = useState({
     loading: false,
-    page: null,
+    page: null
   });
 
   useEffect(() => {
     setAppState({ loading: true });
     const pageId = window.location.pathname.slice(12);
-    const apiUrl = `http://localhost:1337/games/${pageId}`;
-    axios.get(apiUrl).then((games) => {
-      const gamePage = games.data;
-      setAppState({ loading: false, page: gamePage });
+    getGame(pageId).then(res => {
+      setAppState({ loading: false, page: res });
     });
   }, [setAppState]);
 

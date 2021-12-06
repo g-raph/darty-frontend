@@ -18,15 +18,15 @@
 */
 import Dashboard from "views/Dashboard.js";
 // import Notifications from "views/Notifications.js";
-import Players from "views/Players.js";
 // import Typography from "views/Typography.js";
 // import TableList from "views/Tables.js";
 // import UpgradeToPro from "views/Upgrade.js";
-import Games from "views/Games";
 import GameDetailPage from "views/GameDetailPage";
 import Notifications from "views/Notifications";
 import GameAddPage from "views/GameAddPage";
-import PlayerDetailPage from "views/PlayerDetailPage";
+import PlayerList from "views/players/PlayerList";
+import GameList from "views/GameList";
+import PlayerDetail from "views/players/PlayerDetail";
 
 var routes = [
   {
@@ -47,14 +47,14 @@ var routes = [
     path: "/players",
     name: "Players",
     icon: "nc-icon nc-single-02",
-    component: Players,
+    component: PlayerList,
     layout: "/admin",
   },
   {
     path: "/games",
     name: "Games",
     icon: "nc-icon nc-pin-3",
-    component: Games,
+    component: GameList,
     layout: "/admin",
   },
   {
@@ -68,7 +68,7 @@ var routes = [
     path: "/player/:id",
     name: "Player",
     icon: "nc-icon nc-pin-3",
-    component: PlayerDetailPage,
+    component: PlayerDetail,
     layout: "/admin",
   },
   {
