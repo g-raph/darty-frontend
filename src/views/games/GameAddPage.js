@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
-import { getPlayers } from "./Api";
+import { getPlayers } from "../Api";
 import GameAddForm from "./GameAddForm";
-import ListLoading from "./ListLoading";
+import ListLoading from "../ListLoading";
 
 // reactstrap components
 
