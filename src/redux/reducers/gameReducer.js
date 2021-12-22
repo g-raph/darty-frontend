@@ -2,7 +2,9 @@ import {GET_GAME} from '../types'
 
 const initialState = {
     game: undefined,
-    loading: true
+    currentPlayerIndex: 0,
+    loading: true,
+    playerScores: []
 }
 
 export default function gameFunction(state = initialState, action){
@@ -11,6 +13,7 @@ export default function gameFunction(state = initialState, action){
         return {
             ...state,
             game: action.payload,
+            currentPlayerIndex: state.currentPlayerIndex,
             loading: false
         }
         default: return state;

@@ -26,6 +26,7 @@ class PlayerList extends Component {
                     <thead className="text-primary">
                       <tr>
                         <th>Naam</th>
+                        <th>Aantal games</th>
                         <th className="text-right">Wins</th>
                       </tr>
                     </thead>
@@ -34,6 +35,7 @@ class PlayerList extends Component {
                         return (
                           <tr key={item.id} >
                             <td><NavLink to={'/admin/player/' + item.id}>{item.Name}</NavLink></td>
+                            <td>{item.games.length}</td>
                             <td className="text-right">0</td>
                           </tr>
                         );

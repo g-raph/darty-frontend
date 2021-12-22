@@ -22,6 +22,7 @@ export const getGames = () => async dispatch => {
 export const getGame = (id) => async dispatch => {
     try{
         const res = await axios.get(`http://localhost:1337/games/${id}`);
+        console.log(res.data);
         dispatch( {
             type: GET_GAME,
             payload: res.data

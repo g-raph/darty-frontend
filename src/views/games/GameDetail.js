@@ -6,39 +6,67 @@ import { getGame } from '../../redux/actions/gamesActions';
 // const nextPlayerIndex = 0;
 
 class GameDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scoreArray: []
+    };
+  }
+  
   componentDidMount() {
     const pageId = window.location.pathname.slice(12);
-    console.log('pageId', pageId);
     this.props.getGame(pageId);
   }
+
   render() {
     const { game } = this.props.game;
-    console.log('pipgame', game);
 
-    // const setScoreAndSetNextPlayer = (score) => {
-    //   const prevScores = gs.scores;
-    //   const newScoreArray = [...prevScores, score];
-    //   const currentPlayerIndex = gs.currentPlayerIndex;
-    //   const nextPlayerIndex = (currentPlayerIndex >= game.players.length - 1) ? 0 : currentPlayerIndex + 1;
+    const arrangeScores = () => {
+      if (game) {
+        const players = game.players;
+        const worpsArray = game.worps;
+        const tempArray = [];
+        players.forEach(player => {
+          const worps = [];
+          worpsArray.forEach(worp => {
+            if (player.id === worp.player) {
+              worps.push(worp);
+            }
+          });
+          const obj = { ...player, worps: worps };
+          tempArray.push(obj);
+        });
+        this.state = {
+          scoreArray: tempArray
+        };
+      }
+  
+    }
 
-    //   const playerArray = [];
-    //   game.players.forEach(player => {
-    //     const worps = [];
-    //     game.worps.forEach(worp => {
-    //       if (player.id === worp.player) {
-    //         worps.push(worp);
-    //       }
-    //     });
-    //     const obj = { ...player, worps: worps };
-    //     playerArray.push(obj);
-    //   });
-    //   setGameState(
-    //     { scores: newScoreArray, currentPlayerIndex: nextPlayerIndex, playerArray: playerArray },
-    //   );
-    //   setTimeout(() => { console.log(gs.playerArray) }, 1000);
-    // }
+    const arrangeNextPlayer = () => {
+      let playerIndex = this.state.currPlayer;
+      if (playerIndex < (game.players.length - 1)) {
+        playerIndex = playerIndex + 1;
+      } else {
+        playerIndex = 0;
+      }
+      this.setState({currPlayer: playerIndex});
+    }
 
-    if (!game || game.length === 0) return <p>No game, sorry</p>;
+    const setScoreAndSetNextPlayer = (score) => {
+      const pageId = window.location.pathname.slice(12);
+      this.props.getGame(pageId);
+      arrangeScores();
+      arrangeNextPlayer();
+      console.log('STATE', this.state);
+    }
+
+    if (!game || game.length === 0) {
+      return <p>No game, sorry</p>;
+    } else {
+      arrangeScores();
+      console.log('STATE', this.state);
+    }
     return (
       <>
       <div className="content">
@@ -47,13 +75,13 @@ class GameDetail extends Component {
       <Card>
         <CardHeader>
           <CardTitle tag="h4">Game {new Date(game.name).toLocaleString()}</CardTitle>
-          {/* <ScoreAddForm currentPlayerIndex={gameState.currentPlayerIndex} game={game} setScore={(score) => setScoreAndSetNextPlayer(score)} /> */}
+          <ScoreAddForm currentPlayerIndex={this.state.currPlayer} game={game} setScore={(score) => setScoreAndSetNextPlayer(score)} />
         </CardHeader>
         <CardBody>
           <div className="game-detail--left">bord hier</div>
           <div className="game-detail--right">
             <CardTitle tag="h4">Players</CardTitle>
-            {/* <div>Active player = {game.players[gameState.currentPlayerIndex].Name}</div> */}
+            <div>{game.players[game.currentPlayerIndex].Name} is aan de beurt</div>
             <Table responsive>
               <thead className="text-primary">
                 <tr>
@@ -66,13 +94,13 @@ class GameDetail extends Component {
               </thead>
               <tbody>
                 <tr>
-                  {game.players.map((item) => {
+                  {this.state.scoreArray.map((item, index) => {
                     return (
-                      <td key={item.id}>
+                      <td key={index}>
                         <div>{game.startScore}</div>
-                        {/* {item.worps.map((score) => {
-                          return <div key={score.id}>{score.newScore}</div>;
-                        })} */}
+                        {item.worps.map((score, index) => {
+                          return <div key={index}>{score.newScore}</div>;
+                        })}
                       </td>
                     );
                   })}
