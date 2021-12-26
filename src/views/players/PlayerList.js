@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap'
+import { Button, Card, CardBody, CardHeader, CardTitle, Col, Collapse, Row, Table } from 'reactstrap'
 import { getPlayers } from '../../redux/actions/playersActions'
 import PlayerAddForm from './PlayerAddForm'
 
@@ -20,6 +20,15 @@ class PlayerList extends Component {
 
   render() {
     const { players } = this.props.players
+    const colorCirlcleStyle = (color) => {
+      return ({
+        width: '2rem',
+        height: '2rem',
+        borderRadius: '50%',
+        marginRight: '0.5rem',
+        background: color
+      });
+    };
     return (
       <>
         <div className="content">
@@ -30,7 +39,20 @@ class PlayerList extends Component {
                   <CardTitle tag="h4">Spelers</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <PlayerAddForm onSubmit={(player) => this.addPlayerToList(player)}/>
+                <div>
+                  <Button
+                    color="primary"
+                    onClick={function noRefCheck(){}}
+                    style={{
+                      marginBottom: '1rem'
+                    }}
+                  >
+                    Toggle
+                  </Button>
+                  <Collapse>
+                    <PlayerAddForm onSubmit={(player) => this.addPlayerToList(player)}/>
+                  </Collapse>
+                </div>
                   <Table responsive className='playerlist__table'>
                     <thead className="text-primary">
                       <tr>
@@ -44,7 +66,7 @@ class PlayerList extends Component {
                       {players.map((item) => {
                         return (
                           <tr key={item.id} >
-                            <td><NavLink to={'/admin/player/' + item.id}>{item.Name}</NavLink></td>
+                            <td><NavLink style={{display: 'flex', alignItems: 'center'}} to={'/admin/player/' + item.id}><div className='color-circle' style={colorCirlcleStyle(item.color)}></div> {item.Name}</NavLink></td>
                             <td>{item.games.length}</td>
                             <td>{item.wins.length}</td>
                             <td className="text-right">{item.games.length > 0 ? ((item.wins.length / item.games.length) * 100).toFixed(0) + '%' : '-'}</td>

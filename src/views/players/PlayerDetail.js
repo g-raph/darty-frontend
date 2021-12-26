@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Card, CardBody, CardFooter, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
+import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
 import { getPlayer } from '../../redux/actions/playersActions';
 
 class PlayerDetail extends Component {
@@ -21,12 +21,12 @@ class PlayerDetail extends Component {
             {
               data: player.worps.map(item => item.arrowTotal),
               fill: false,
-              borderColor: "#fbc658",
+              borderColor: player.color,
               backgroundColor: "transparent",
-              pointBorderColor: "#fbc658",
+              pointBorderColor: player.color,
               pointRadius: 4,
               pointHoverRadius: 4,
-              pointBorderWidth: 8,
+              pointBorderWidth: 6,
               tension: 0.4,
             }
           ],
@@ -88,14 +88,9 @@ class PlayerDetail extends Component {
                   data={dashboardNASDAQChart.data}
                   options={dashboardNASDAQChart.options}
                   width={400}
-                  height={100}
+                  height={150}
                 />
               </CardBody>
-              <CardFooter>
-                <div className="chart-legend">
-                  <i className="fa fa-circle text-warning" /> Aantal punten per worp
-                </div>
-              </CardFooter>
             </Card>
             </Col>
           </Row>

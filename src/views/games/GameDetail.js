@@ -54,13 +54,12 @@ class GameDetail extends Component {
       data: (canvas) => {
         const datasetsArray = [];
         this.state.scoreArray.forEach(player => {
-          const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
           const datasetObject = {
             data: player.worps.length > 0 ? player.worps.map(item => item.arrowTotal) : 0,
             fill: true,
-            borderColor: randomColor,
+            borderColor: player.color,
             backgroundColor: "transparent",
-            pointBorderColor: randomColor,
+            pointBorderColor: player.color,
             pointRadius: 4,
             pointHoverRadius: 4,
             pointBorderWidth: 8,
@@ -106,14 +105,13 @@ class GameDetail extends Component {
           <Col md="12">
       <Card>
         <CardHeader>
-          <CardTitle tag="h4">Game {game.id} <small>({new Date(game.name).toLocaleString()})</small></CardTitle>
+          <CardTitle tag="h2">Game {game.id} <small>({new Date(game.name).toLocaleString()})</small></CardTitle>
           {handleOpenOrFinish()}
         </CardHeader>
         <CardBody>
           <div className="game-detail--left">bord hier</div>
           <div className="game-detail--right">
-            <CardTitle tag="h4">Players</CardTitle>
-            <div>{game.players[game.currentPlayerIndex].Name} is aan de beurt</div>
+            <CardTitle tag="h3">{game.players[game.currentPlayerIndex].Name} is aan de beurt</CardTitle>
             <Table responsive>
               <thead className="text-primary">
                 <tr>
@@ -128,10 +126,15 @@ class GameDetail extends Component {
                 <tr>
                   {this.state.scoreArray.map((item, index) => {
                     return (
-                      <td key={index}>
-                        <div>{game.startScore}</div>
+                      <td key={index} style={{verticalAlign: 'top'}}>
+                        <h5>{game.startScore}</h5>
                         {item.worps.map((score, index) => {
-                          return <div key={index}>{score.newScore}</div>;
+                          return (
+                            <div key={index}>
+                              <small>{score.arrow1} - {score.arrow2} - {score.arrow3}</small>
+                              <h5>{score.newScore}</h5>
+                            </div>
+                          );
                         })}
                       </td>
                     );
@@ -156,7 +159,7 @@ class GameDetail extends Component {
                   data={playerStats.data}
                   options={playerStats.options}
                   width={400}
-                  height={150}
+                  height={100}
                 />
               </CardBody>
             </Card>
