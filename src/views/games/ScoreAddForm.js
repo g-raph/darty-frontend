@@ -21,18 +21,18 @@ function ScoreAddForm(props) {
     });
   };
 
-  const notify = (place, nextPlayer) => {
+  const notify = (place, text, type) => {
     let options = {};
     options = {
       place: place,
       message: (
         <div>
           <p>
-            Volgende speler: <strong>{nextPlayer}</strong>
+            {text}
           </p>
         </div>
       ),
-      type: 'success',
+      type: type,
       icon: "nc-icon nc-bell-55",
       autoDismiss: 7,
     };
@@ -47,32 +47,62 @@ function ScoreAddForm(props) {
                           game.startScore;
       const totalScore = parseInt(form.pijl1) + parseInt(form.pijl2) + parseInt(form.pijl3);
       const nextScore = prevScore - totalScore;
-      const scoreObj = {
-        previousScore: prevScore,
-        arrow1: form.pijl1,
-        arrow2: form.pijl2,
-        arrow3: form.pijl3,
-        arrowTotal: totalScore,
-        newScore: nextScore >= 0 ? nextScore : prevScore,
-        player: parentState[game.currentPlayerIndex],
-        game: game
-      };
-      axios
-      .post('http://localhost:1337/worps', scoreObj)
-      .then(response => response.data)
-      .then(data => {
-        props.setScore(data);
-      });
-      const nextPlayerObject = {
-        currentPlayerIndex: (game.currentPlayerIndex < (game.players.length - 1)) ? game.currentPlayerIndex + 1 : 0
-      };
-      axios
-      .put('http://localhost:1337/games/' + game.id, nextPlayerObject)
-      .then(response => response.data)
-      .then(data => {
-        props.setScore(data);
-        notify('tc', game.players[nextPlayerObject.currentPlayerIndex].Name);
-        });  
+      if (totalScore <= 180) {
+        const scoreObj = {
+          previousScore: prevScore,
+          arrow1: form.pijl1,
+          arrow2: form.pijl2,
+          arrow3: form.pijl3,
+          arrowTotal: totalScore,
+          newScore: nextScore >= 0 ? nextScore : prevScore,
+          player: parentState[game.currentPlayerIndex],
+          game: game
+        };
+        axios
+        .post('http://localhost:1337/worps', scoreObj)
+        .then(response => response.data)
+        .then(data => {
+          props.setScore(data);
+        });
+        if (nextScore === 0) {
+          console.log("we have a winner!", game.players[game.currentPlayerIndex]);
+          
+          const updateGameObject = {
+            winner: game.players[game.currentPlayerIndex],
+            finished: true
+          };
+          axios
+          .put('http://localhost:1337/games/' + game.id, updateGameObject)
+          .then(response => response.data)
+          .then(data => {
+            props.setScore(data);
+            notify('tc', 'Game finished! Winner = ' + updateGameObject.winner.Name, 'success');
+          });
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        } else {
+          const nextPlayerObject = {
+            currentPlayerIndex: (game.currentPlayerIndex < (game.players.length - 1)) ? game.currentPlayerIndex + 1 : 0
+          };
+          axios
+          .put('http://localhost:1337/games/' + game.id, nextPlayerObject)
+          .then(response => response.data)
+          .then(data => {
+            props.setScore(data);
+            notify('tc', 'Volgende speler: ' + game.players[nextPlayerObject.currentPlayerIndex].Name, 'success');
+          });
+        }
+      } else {
+        notify('tc', 'Score kan niet hoger dan 180 zijn...!!', 'danger');
+      }
     }
   }
 

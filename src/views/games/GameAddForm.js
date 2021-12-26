@@ -13,6 +13,7 @@ function GameAddForm(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    console.log('form', form);
     const gameStartValue = form.startScore;
     const selectedPlayers = form.selectedPlayers;
     const gameObj = {
@@ -37,7 +38,7 @@ function GameAddForm(props) {
         <form onSubmit={handleSubmit}>
           <label>
             Start score: 
-            <input type="number" value={form.startScore} onChange={e => setState({startScore: e.target.value})} />
+            <input type="number" value={form.startScore} onChange={e => setState({startScore: e.target.value, selectedPlayers: form.selectedPlayers})} />
           </label>
           {allPlayers.map(item => {
             return (

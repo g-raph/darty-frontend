@@ -16,7 +16,7 @@ class PlayerDetail extends Component {
     const dashboardNASDAQChart = {
       data: (canvas) => {
         return {
-          labels: player.worps.map(item => item.id),
+          labels: player.worps.map((item, index) => 'worp ' + (index + 1)),
           datasets: [
             {
               data: player.worps.map(item => item.arrowTotal),

@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
 
-function PlayerAddForm() {
-  const history = useHistory();
+function PlayerAddForm(props) {
+
+  const { onSubmit } = props;
+
   const [form, setState] = useState({
     Name: ''
   });
@@ -17,8 +18,7 @@ function PlayerAddForm() {
       .post('http://localhost:1337/players', playereObj)
       .then(response => response.data)
       .then(data => {
-          console.log(data);
-        history.push('/admin/players');
+        onSubmit(data);
       });      
   }
 

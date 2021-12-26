@@ -25,7 +25,9 @@ class GameList extends Component {
                     <thead className="text-primary">
                       <tr>
                         <th>Game</th>
-                        <th className="text-right">Players</th>
+                        <th>Players</th>
+                        <th>Status</th>
+
                       </tr>
                     </thead>
                     <tbody>
@@ -35,10 +37,11 @@ class GameList extends Component {
                           <tr key={item.id}>
                             <td>
                               <NavLink to={'/admin/game/' + item.id}>
-                                {new Date(item.name).toLocaleString()}
+                                Game {item.id} <small>({new Date(item.name).toLocaleString()})</small>
                               </NavLink>
                             </td>
-                            <td className="text-right">0</td>
+                            <td>{item.players.map(player => player.Name + '-')}</td>
+                            <td>{item.finished ? 'Finished' : 'Open'}</td>
                           </tr>
                         );
                       })}

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
+import { Alert, Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
 import ScoreAddForm from './ScoreAddForm';
 import { getGame } from '../../redux/actions/gamesActions';
 import { Line } from 'react-chartjs-2';
-// const nextPlayerIndex = 0;
 
 class GameDetail extends Component {
   constructor(props) {
@@ -55,7 +54,6 @@ class GameDetail extends Component {
       data: (canvas) => {
         const datasetsArray = [];
         this.state.scoreArray.forEach(player => {
-          console.log(player);
           const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
           const datasetObject = {
             data: player.worps.length > 0 ? player.worps.map(item => item.arrowTotal) : 0,
@@ -73,7 +71,7 @@ class GameDetail extends Component {
         });
         console.log('datasetsArray', datasetsArray);
         return {
-          labels: this.state.scoreArray[0].worps.map((item, index) => index + 1),
+          labels: this.state.scoreArray[0].worps.map((item, index) => 'worp ' + (index + 1)),
           datasets: datasetsArray,
         };
       },
@@ -82,6 +80,17 @@ class GameDetail extends Component {
           legend: { display: true },
         },
       },
+    };
+
+    const handleOpenOrFinish = () => {
+      if(game.finished) {
+        return (
+          <Alert color="info">
+            <span>Deze game is afgelopen. De winnaar is {game.winner.Name}</span>
+          </Alert>
+        );
+      }
+      return (<ScoreAddForm parentState={this.state.scoreArray} game={game} setScore={(score) => setScoreAndSetNextPlayer(score)} />);
     };
 
     if (!game || game.length === 0) {
@@ -97,8 +106,8 @@ class GameDetail extends Component {
           <Col md="12">
       <Card>
         <CardHeader>
-          <CardTitle tag="h4">Game {new Date(game.name).toLocaleString()}</CardTitle>
-          <ScoreAddForm parentState={this.state.scoreArray} game={game} setScore={(score) => setScoreAndSetNextPlayer(score)} />
+          <CardTitle tag="h4">Game {game.id} <small>({new Date(game.name).toLocaleString()})</small></CardTitle>
+          {handleOpenOrFinish()}
         </CardHeader>
         <CardBody>
           <div className="game-detail--left">bord hier</div>
