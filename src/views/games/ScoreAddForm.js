@@ -63,10 +63,14 @@ function ScoreAddForm(props) {
         .then(response => response.data)
         .then(data => {
           props.setScore(data);
+          setState({
+            pijl1: 0,
+            pijl2: 0,
+            pijl3: 0,
+          });
+          document.getElementById('first-arrow').focus();
         });
-        if (nextScore === 0) {
-          console.log("we have a winner!", game.players[game.currentPlayerIndex]);
-          
+        if (nextScore === 0) {          
           const updateGameObject = {
             winner: game.players[game.currentPlayerIndex],
             finished: true
@@ -78,16 +82,6 @@ function ScoreAddForm(props) {
             props.setScore(data);
             notify('tc', 'Game finished! Winner = ' + updateGameObject.winner.Name, 'success');
           });
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
         } else {
           const nextPlayerObject = {
             currentPlayerIndex: (game.currentPlayerIndex < (game.players.length - 1)) ? game.currentPlayerIndex + 1 : 0
@@ -112,7 +106,7 @@ function ScoreAddForm(props) {
       <form onSubmit={handleSubmit}>
         <label>
           Pijl 1: 
-          <input type="number" name="pijl1" value={form.pijl1} onChange={handleChange} />
+          <input id="first-arrow" type="number" name="pijl1" value={form.pijl1} onChange={handleChange} />
         </label>
         <label>
           Pijl 2: 
