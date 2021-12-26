@@ -109,7 +109,7 @@ class GameDetail extends Component {
           {handleOpenOrFinish()}
         </CardHeader>
         <CardBody>
-          <div className="game-detail--left">bord hier</div>
+          {/* <div className="game-detail--left">bord hier</div> */}
           <div className="game-detail--right">
             <CardTitle tag="h3">{game.players[game.currentPlayerIndex].Name} is aan de beurt</CardTitle>
             <Table responsive>
@@ -117,7 +117,7 @@ class GameDetail extends Component {
                 <tr>
                   {game.players.map((item) => {
                     return (
-                      <th key={item.id}>{item.Name}</th>
+                      <th key={item.id} style={{color: item.color}}>{item.Name}</th>
                     );
                   })}
                 </tr>
@@ -131,7 +131,7 @@ class GameDetail extends Component {
                         {item.worps.map((score, index) => {
                           return (
                             <div key={index}>
-                              <small>{score.arrow1} - {score.arrow2} - {score.arrow3}</small>
+                              <small>{score.arrow1} + {score.arrow2} + {score.arrow3} = <strong>{score.arrowTotal}</strong></small>
                               <h5>{score.newScore}</h5>
                             </div>
                           );

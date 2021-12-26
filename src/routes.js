@@ -9,12 +9,13 @@ import PlayerList from "views/players/PlayerList";
 import GameList from "views/games/GameList";
 import PlayerDetail from "views/players/PlayerDetail";
 import GameDetail from "views/games/GameDetail";
+import User from "views/User";
 
 var routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    icon: "nc-icon nc-bank",
+    icon: "nc-icon nc-layout-11",
     component: Dashboard,
     layout: "/admin",
     showInSidebar: true
@@ -22,7 +23,7 @@ var routes = [
   {
     path: "/new-game",
     name: "New game",
-    icon: "nc-icon nc-bell-55",
+    icon: "nc-icon nc-air-baloon",
     component: GameAddPage,
     layout: "/admin",
     showInSidebar: true
@@ -64,6 +65,14 @@ var routes = [
     name: "Notifications",
     icon: "nc-icon nc-bell-55",
     component: Notifications,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/user",
+    name: "User",
+    icon: "nc-icon nc-bell-55",
+    component: User,
     layout: "/admin",
     showInSidebar: false
   },

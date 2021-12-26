@@ -51,7 +51,7 @@ class Dashboard extends Component {
       },
       options: {
         plugins: {
-          legend: { display: true },
+          legend: { display: false },
           tooltip: { enabled: true },
         },
         maintainAspectRatio: true,
@@ -89,7 +89,7 @@ class Dashboard extends Component {
         <div className="content">
           <Row>
             <Col style={{ textAlign: 'center' }}>
-              <h2>Hello Gunter</h2>
+              <h2>Hallo Gunter</h2>
             </Col>
           </Row>
           <Row>
@@ -123,7 +123,9 @@ class Dashboard extends Component {
                   </Table>
                 </CardBody>
                 <CardFooter>
-                  Link naar alle spelers
+                <NavLink to={'/admin/players'}>
+                    Naar de spelerslijst
+                  </NavLink>
                 </CardFooter>
               </Card>
             </Col>
@@ -160,7 +162,9 @@ class Dashboard extends Component {
                   </Table>
                 </CardBody>
                 <CardFooter>
-                  Link naar alle games
+                  <NavLink to={'/admin/games'}>
+                    Naar alle games
+                  </NavLink>
                 </CardFooter>
               </Card>
             </Col>
