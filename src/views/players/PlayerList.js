@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Button, Card, CardBody, CardHeader, CardTitle, Col, Collapse, Row, Table } from 'reactstrap'
+import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap'
 import { getPlayers } from '../../redux/actions/playersActions'
 import PlayerAddForm from './PlayerAddForm'
 
@@ -10,9 +10,6 @@ class PlayerList extends Component {
   componentDidMount() {
     this.props.getPlayers()
   }
-  // componentDidUpdate() {
-  //   this.props.getPlayers()
-  // }
 
   addPlayerToList(player) {
     this.props.getPlayers()
@@ -40,18 +37,7 @@ class PlayerList extends Component {
                 </CardHeader>
                 <CardBody>
                 <div>
-                  <Button
-                    color="primary"
-                    onClick={function noRefCheck(){}}
-                    style={{
-                      marginBottom: '1rem'
-                    }}
-                  >
-                    Toggle
-                  </Button>
-                  <Collapse>
                     <PlayerAddForm onSubmit={(player) => this.addPlayerToList(player)}/>
-                  </Collapse>
                 </div>
                   <Table responsive className='playerlist__table'>
                     <thead className="text-primary">

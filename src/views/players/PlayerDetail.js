@@ -101,7 +101,6 @@ class PlayerDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('stateobj', state);
   return ({ player: state.player })
 }
 

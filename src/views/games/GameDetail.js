@@ -84,7 +84,7 @@ class GameDetail extends Component {
     const handleOpenOrFinish = () => {
       if(game.finished) {
         return (
-          <Alert color="info">
+          <Alert color="success">
             <span>Deze game is afgelopen. De winnaar is {game.winner.Name}</span>
           </Alert>
         );
@@ -171,7 +171,6 @@ class GameDetail extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log('stateobj', state);
   return ({ game: state.game })
 }
 
