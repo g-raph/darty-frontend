@@ -17,6 +17,7 @@ var routes = [
     icon: "nc-icon nc-bank",
     component: Dashboard,
     layout: "/admin",
+    showInSidebar: true
   },
   {
     path: "/new-game",
@@ -24,6 +25,7 @@ var routes = [
     icon: "nc-icon nc-bell-55",
     component: GameAddPage,
     layout: "/admin",
+    showInSidebar: true
   },
   {
     path: "/players",
@@ -31,6 +33,7 @@ var routes = [
     icon: "nc-icon nc-single-02",
     component: PlayerList,
     layout: "/admin",
+    showInSidebar: true
   },
   {
     path: "/games",
@@ -38,6 +41,7 @@ var routes = [
     icon: "nc-icon nc-pin-3",
     component: GameList,
     layout: "/admin",
+    showInSidebar: true
   },
   {
     path: "/game/:id",
@@ -45,6 +49,7 @@ var routes = [
     icon: "nc-icon nc-pin-3",
     component: GameDetail,
     layout: "/admin",
+    showInSidebar: false
   },
   {
     path: "/player/:id",
@@ -52,6 +57,7 @@ var routes = [
     icon: "nc-icon nc-pin-3",
     component: PlayerDetail,
     layout: "/admin",
+    showInSidebar: false
   },
   {
     path: "/notifications",
@@ -59,6 +65,7 @@ var routes = [
     icon: "nc-icon nc-bell-55",
     component: Notifications,
     layout: "/admin",
+    showInSidebar: false
   },
   // {
   //   path: "/tables",
