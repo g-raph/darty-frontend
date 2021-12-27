@@ -32,19 +32,18 @@ class Dashboard extends Component {
         background: color
       });
     };
-    console.log(players.map(player => player.wins));
     const winsPieChart = {
       data: (canvas) => {
         return {
           labels: players.map(player => player.Name),
           datasets: [
             {
-              label: "Wins per speler",
+              label: "Winpercentage per speler",
               pointRadius: 0,
               pointHoverRadius: 0,
               backgroundColor: players.map(player => player.color),
               borderWidth: 0,
-              data: players.map(player => player.wins.length),
+              data: players.map(player => player.wins.length / player.games.length),
             },
           ],
         };
@@ -93,7 +92,7 @@ class Dashboard extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md="4">
+            <Col md="6">
               <Card>
                 <CardHeader>
                   <CardTitle tag="h5">Spelers</CardTitle>
@@ -129,7 +128,7 @@ class Dashboard extends Component {
                 </CardFooter>
               </Card>
             </Col>
-            <Col md="4">
+            <Col md="6">
               <Card>
                 <CardHeader>
                   <CardTitle tag="h5">Games</CardTitle>
@@ -171,8 +170,8 @@ class Dashboard extends Component {
             <Col md="4">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h5">Winner Statistics</CardTitle>
-                  <p className="card-category">Who has the most wins?</p>
+                  <CardTitle tag="h5">Winner Statistieken</CardTitle>
+                  <p className="card-category">Winpercentage per speler</p>
                 </CardHeader>
                 <CardBody style={{ height: "266px" }}>
                   <Pie
@@ -180,12 +179,6 @@ class Dashboard extends Component {
                     options={winsPieChart.options}
                   />
                 </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-bars" /> Percentage van wins per persoon
-                  </div>
-                </CardFooter>
               </Card>
             </Col>
           </Row>

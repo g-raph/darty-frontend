@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
+import { Badge, Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
 import { getGames } from '../../redux/actions/gamesActions';
 
 class GameList extends Component {
@@ -33,7 +33,6 @@ class GameList extends Component {
                     <tbody>
                       {games.map((item) => {
                         return (
-
                           <tr key={item.id}>
                             <td>
                               <NavLink to={'/admin/game/' + item.id}>
@@ -41,7 +40,7 @@ class GameList extends Component {
                               </NavLink>
                             </td>
                             <td>{item.players.map(player => player.Name + '-')}</td>
-                            <td>{item.finished ? 'Finished' : 'Open'}</td>
+                            <td>{item.finished ? <Badge color="secondary">Finished</Badge> : <Badge color="primary">Open</Badge>}</td>
                           </tr>
                         );
                       })}

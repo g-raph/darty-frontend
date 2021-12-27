@@ -4,7 +4,7 @@ import axios from 'axios'
 export const getGames = () => async dispatch => {
     
     try{
-        const res = await axios.get(`http://localhost:1337/games`)
+        const res = await axios.get(`http://localhost:1337/games?_sort=id:DESC`)
         dispatch( {
             type: GET_GAMES,
             payload: res.data

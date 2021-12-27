@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
 import PerfectScrollbar from "perfect-scrollbar";
 
-import logo from "logo.svg";
+import logo from "../../assets/logo-darty.png";
 
 var ps;
 
@@ -38,7 +38,7 @@ function Sidebar(props) {
           className="simple-text logo-mini"
         >
           <div className="logo-img">
-            <img src={logo} alt="react-logo" />
+            <img src={logo} alt="darty-logo" />
           </div>
         </a>
         <a

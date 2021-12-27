@@ -28,10 +28,11 @@ export function getPlayer(playerId) {
 }
 
 export function getGames() {
-  const apiUrl = `http://localhost:1337/games?_sort=created_at:DESC`;
+  const apiUrl = `http://localhost:1337/games?_sort=id:DESC`;
   const getGamesRequest = async () => {
     try {
         const resp = await axios.get(apiUrl);
+        console.log('RESPDATA: ', resp.data);
         return resp.data
     } catch (err) {
         console.error('ASYNC DATA ERROR', err);
