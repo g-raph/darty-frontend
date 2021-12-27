@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const getPlayers = () => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:1337/players`)
+        const res = await axios.get(`https://darty-backend.herokuapp.com/players`)
         dispatch( {
             type: GET_PLAYERS,
             payload: res.data
@@ -19,7 +19,7 @@ export const getPlayers = () => async dispatch => {
 
 export const getPlayer = (id) => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:1337/players/${id}`);
+        const res = await axios.get(`https://darty-backend.herokuapp.com/players/${id}`);
         console.log('res', res);
         dispatch( {
             type: GET_PLAYER,
@@ -39,7 +39,7 @@ export const addPlayer = (name) => async dispatch => {
         const playereObj = {
             Name: name,
         };
-        const res = await axios.post('http://localhost:1337/players', playereObj);
+        const res = await axios.post('https://darty-backend.herokuapp.com/players', playereObj);
         dispatch( {
             type: ADD_PLAYER,
             payload: res.data

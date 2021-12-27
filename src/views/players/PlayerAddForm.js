@@ -18,7 +18,7 @@ function PlayerAddForm(props) {
       color: form.color
     };
     axios
-      .post('http://localhost:1337/players', playereObj)
+      .post('https://darty-backend.herokuapp.com/players', playereObj)
       .then(response => response.data)
       .then(data => {
         onSubmit(data);

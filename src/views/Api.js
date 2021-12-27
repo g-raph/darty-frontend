@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function getPlayers() {
-  const apiUrl = `http://localhost:1337/players`;
+  const apiUrl = `https://darty-backend.herokuapp.com/players`;
   const getPlayersRequest = async () => {
     try {
         const resp = await axios.get(apiUrl);
@@ -15,7 +15,7 @@ export function getPlayers() {
 }
 
 export function getPlayer(playerId) {
-  const apiUrl = `http://localhost:1337/players/${playerId}`;
+  const apiUrl = `https://darty-backend.herokuapp.com/players/${playerId}`;
   const getPlayerRequest = async () => {
     try {
         const resp = await axios.get(apiUrl);
@@ -28,7 +28,7 @@ export function getPlayer(playerId) {
 }
 
 export function getGames() {
-  const apiUrl = `http://localhost:1337/games?_sort=id:DESC`;
+  const apiUrl = `https://darty-backend.herokuapp.com/games?_sort=id:DESC`;
   const getGamesRequest = async () => {
     try {
         const resp = await axios.get(apiUrl);
@@ -42,7 +42,7 @@ export function getGames() {
 }
 
 export function getGame(gameId) {
-  const apiUrl = `http://localhost:1337/games/${gameId}`;
+  const apiUrl = `https://darty-backend.herokuapp.com/games/${gameId}`;
   const getGameRequest = async () => {
     try {
         const resp = await axios.get(apiUrl);

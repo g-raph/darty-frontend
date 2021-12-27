@@ -22,7 +22,7 @@ function GameAddForm(props) {
       players: selectedPlayers
     };
     axios
-      .post('http://localhost:1337/games', gameObj)
+      .post('https://darty-backend.herokuapp.com/games', gameObj)
       .then(response => response.data)
       .then(data => {
         history.push('/admin/game/' + data.id);

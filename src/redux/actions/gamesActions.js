@@ -4,7 +4,7 @@ import axios from 'axios'
 export const getGames = () => async dispatch => {
     
     try{
-        const res = await axios.get(`http://localhost:1337/games?_sort=id:DESC`)
+        const res = await axios.get(`https://darty-backend.herokuapp.com/games?_sort=id:DESC`)
         dispatch( {
             type: GET_GAMES,
             payload: res.data
@@ -21,7 +21,7 @@ export const getGames = () => async dispatch => {
 
 export const getGame = (id) => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:1337/games/${id}`);
+        const res = await axios.get(`https://darty-backend.herokuapp.com/games/${id}`);
         console.log(res.data);
         dispatch( {
             type: GET_GAME,

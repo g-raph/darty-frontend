@@ -59,7 +59,7 @@ function ScoreAddForm(props) {
           game: game
         };
         axios
-        .post('http://localhost:1337/worps', scoreObj)
+        .post('https://darty-backend.herokuapp.com/worps', scoreObj)
         .then(response => response.data)
         .then(data => {
           props.setScore(data);
@@ -76,7 +76,7 @@ function ScoreAddForm(props) {
             finished: true
           };
           axios
-          .put('http://localhost:1337/games/' + game.id, updateGameObject)
+          .put('https://darty-backend.herokuapp.com/games/' + game.id, updateGameObject)
           .then(response => response.data)
           .then(data => {
             props.setScore(data);
@@ -87,7 +87,7 @@ function ScoreAddForm(props) {
             currentPlayerIndex: (game.currentPlayerIndex < (game.players.length - 1)) ? game.currentPlayerIndex + 1 : 0
           };
           axios
-          .put('http://localhost:1337/games/' + game.id, nextPlayerObject)
+          .put('https://darty-backend.herokuapp.com/games/' + game.id, nextPlayerObject)
           .then(response => response.data)
           .then(data => {
             props.setScore(data);
