@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Card, CardBody, CardHeader, CardTitle } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, CardTitle, FormGroup, Input, Label } from 'reactstrap';
 
 function GameAddForm(props) {
   const history = useHistory();
@@ -36,19 +36,49 @@ function GameAddForm(props) {
       </CardHeader>
       <CardBody>
         <form onSubmit={handleSubmit}>
-          <label>
-            Start score: 
-            <input type="number" value={form.startScore} onChange={e => setState({startScore: e.target.value, selectedPlayers: form.selectedPlayers})} />
-          </label>
-          {allPlayers.map(item => {
+          <FormGroup>
+            <Label for="Startscore">
+              Start score
+            </Label>
+            <Input
+              value={form.startScore}
+              name="Startscore"
+              onChange={e => setState({startScore: e.target.value, selectedPlayers: form.selectedPlayers})}
+              type="number"
+            />
+          </FormGroup>
+          <FormGroup style={{marginLeft: '1.5rem'}}>
+            {allPlayers.map(item => {
+              return (
+                <div key={item.id}>
+                  <Input
+                    id={"check" + item.id}
+                    name="check"
+                    type="checkbox"
+                    value={item}
+                    onChange={() => form.selectedPlayers.push(item)}
+                  />
+                  <Label
+                    check
+                    for={"check" + item.id}
+                  >
+                    {item.Name}
+                  </Label>
+                </div>
+              );
+            })}
+          </FormGroup>
+          {/* {allPlayers.map(item => {
             return (
               <label key={item.id}>
                 {item.Name}
                 <input type="checkbox" value={item} onChange={() => form.selectedPlayers.push(item)} />
               </label>
             );
-          })}
-          <input type="submit" value="Let's play!" />
+          })} */}
+          <Button type="submit">
+            Let's play!
+          </Button>
         </form>
       </CardBody>
     </Card>

@@ -30,15 +30,22 @@ class PlayerList extends Component {
       <>
         <div className="content">
           <Row>
-            <Col md="12">
+            <Col md="3">
+              <Card>
+                <CardHeader>
+                  <CardTitle tag="h4">Speler toevoegen</CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <PlayerAddForm onSubmit={(player) => this.addPlayerToList(player)}/>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col md="9">
               <Card>
                 <CardHeader>
                   <CardTitle tag="h4">Spelers</CardTitle>
                 </CardHeader>
                 <CardBody>
-                <div>
-                    <PlayerAddForm onSubmit={(player) => this.addPlayerToList(player)}/>
-                </div>
                   <Table responsive className='playerlist__table'>
                     <thead className="text-primary">
                       <tr>

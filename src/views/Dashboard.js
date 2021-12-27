@@ -82,7 +82,6 @@ class Dashboard extends Component {
         },
       },
     };
-    if (!games || games.length === 0) return <p>No games, sorry</p>;
     return (
       <>
         <div className="content">

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { CirclePicker } from 'react-color';
+import { Button, FormGroup, Input, Label } from 'reactstrap';
 
 function PlayerAddForm(props) {
 
@@ -22,7 +23,7 @@ function PlayerAddForm(props) {
       .then(response => response.data)
       .then(data => {
         onSubmit(data);
-      });      
+      });
   }
 
   const handleChangeComplete = (color) => {
@@ -31,15 +32,30 @@ function PlayerAddForm(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-        <label>
-        Name: 
-        <input type="text" value={form.Name} onChange={e => setState({Name: e.target.value})} />
-        </label>
-        Color: <CirclePicker
-          color={ form.color }
-          onChangeComplete={ handleChangeComplete }
+      <FormGroup>
+        <Label for="Name">
+          Naam
+        </Label>
+        <Input
+          value={form.Name}
+          name="Name"
+          onChange={e => setState({ Name: e.target.value })}
+          placeholder="Vul een naam in"
+          type="text"
         />
-        <input type="submit" value="Toevoegen" />
+      </FormGroup>
+      <FormGroup>
+        <Label for="Color">
+          Kies een kleur
+        </Label>
+        <CirclePicker
+          color={form.color}
+          onChangeComplete={handleChangeComplete}
+        />
+      </FormGroup>
+      <Button type="submit">
+      Toevoegen
+      </Button>
     </form>
   );
 };

@@ -10,7 +10,19 @@ class GameList extends Component {
   }
   render() {
     const { games } = this.props.games;
-    if (!games || games.length === 0) return <p>No games, sorry</p>;
+    if (!games || games.length === 0) return (
+      <>
+        <div className="content">
+          <Row>
+            <Col md="12">
+              <Card>
+                <CardBody><p>Geen games gevonden</p></CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      </>
+    );
     return (
       <>
         <div className="content">
