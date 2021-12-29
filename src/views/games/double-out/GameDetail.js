@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Alert, Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
 import ScoreAddForm from './ScoreAddForm';
-import { getGame } from '../../redux/actions/gamesActions';
+import { getGame } from '../../../redux/actions/gamesActions';
 import { Line } from 'react-chartjs-2';
 
 class GameDetail extends Component {

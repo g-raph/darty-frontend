@@ -30,13 +30,14 @@ class GameList extends Component {
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Games</CardTitle>
+                  <CardTitle tag="h4">Double-out Games</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Table responsive className='gamelist__table'>
                     <thead className="text-primary">
                       <tr>
                         <th>Game</th>
+                        <th>Startscore</th>
                         <th>Players</th>
                         <th>Status</th>
 
@@ -51,6 +52,7 @@ class GameList extends Component {
                                 Game {item.id} <small>({new Date(item.name).toLocaleString()})</small>
                               </NavLink>
                             </td>
+                            <td>{item.startScore}</td>
                             <td>{item.players.map(player => player.Name + '-')}</td>
                             <td>{item.finished ? <Badge color="secondary">Finished</Badge> : <Badge color="primary">Open</Badge>}</td>
                           </tr>

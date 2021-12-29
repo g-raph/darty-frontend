@@ -1,14 +1,10 @@
 import Dashboard from "views/Dashboard.js";
-// import Notifications from "views/Notifications.js";
-// import Typography from "views/Typography.js";
-// import TableList from "views/Tables.js";
-// import UpgradeToPro from "views/Upgrade.js";
 import Notifications from "views/Notifications";
-import GameAddPage from "views/games/GameAddPage";
+import GameAddPage from "views/games/double-out/GameAddPage";
 import PlayerList from "views/players/PlayerList";
 import GameList from "views/games/GameList";
 import PlayerDetail from "views/players/PlayerDetail";
-import GameDetail from "views/games/GameDetail";
+import GameDetail from "views/games/double-out/GameDetail";
 import User from "views/User";
 
 var routes = [
