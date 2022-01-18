@@ -32,7 +32,7 @@ function GameAddForm(props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag="h4">Setup new game</CardTitle>
+        <CardTitle tag="h4">Maak een nieuwe Double-Out game aan.</CardTitle>
       </CardHeader>
       <CardBody>
         <form onSubmit={handleSubmit}>

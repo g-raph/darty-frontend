@@ -57,7 +57,6 @@ export const getCricketGames = () => async dispatch => {
 export const getCricketGame = (id) => async dispatch => {
     try{
         const res = await axios.get(`https://darty-backend.herokuapp.com/cricket-games/${id}`);
-        console.log(res.data);
         dispatch( {
             type: GET_CRICKET_GAME,
             payload: res.data

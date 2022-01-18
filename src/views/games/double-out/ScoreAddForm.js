@@ -42,8 +42,10 @@ function ScoreAddForm(props) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (game) {
-      const prevScore = parentState[game.currentPlayerIndex].worps.length > 0 ? 
-                          parentState[game.currentPlayerIndex].worps[parentState[game.currentPlayerIndex].worps.length - 1].newScore : 
+      const currentPlayerObject = parentState[game.currentPlayerIndex];
+      const worpCount = currentPlayerObject.worps.length;
+      const prevScore = worpCount ? 
+                          currentPlayerObject.worps[worpCount - 1].newScore : 
                           game.startScore;
       const totalScore = parseInt(form.pijl1) + parseInt(form.pijl2) + parseInt(form.pijl3);
       const nextScore = prevScore - totalScore;
@@ -54,8 +56,8 @@ function ScoreAddForm(props) {
           arrow2: form.pijl2,
           arrow3: form.pijl3,
           arrowTotal: totalScore,
-          newScore: nextScore >= 0 ? nextScore : prevScore,
-          player: parentState[game.currentPlayerIndex],
+          newScore: nextScore >= 0 && nextScore !== 1 ? nextScore : prevScore,
+          player: currentPlayerObject,
           game: game
         };
         axios

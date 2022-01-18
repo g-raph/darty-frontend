@@ -6,6 +6,8 @@ import GameList from "views/games/GameList";
 import PlayerDetail from "views/players/PlayerDetail";
 import GameDetail from "views/games/double-out/GameDetail";
 import User from "views/User";
+import CricketGameAdd from "views/games/cricket/CricketGameAdd";
+import CricketGameDetail from "views/games/cricket/CricketGameDetail";
 
 var routes = [
   {
@@ -21,6 +23,14 @@ var routes = [
     name: "New game",
     icon: "nc-icon nc-air-baloon",
     component: GameAddPage,
+    layout: "/admin",
+    showInSidebar: true
+  },
+  {
+    path: "/new-cricket-game",
+    name: "New Cricket game",
+    icon: "nc-icon nc-air-baloon",
+    component: CricketGameAdd,
     layout: "/admin",
     showInSidebar: true
   },
@@ -45,6 +55,14 @@ var routes = [
     name: "Game",
     icon: "nc-icon nc-pin-3",
     component: GameDetail,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/cricket-game/:id",
+    name: "Cricket Game",
+    icon: "nc-icon nc-pin-3",
+    component: CricketGameDetail,
     layout: "/admin",
     showInSidebar: false
   },

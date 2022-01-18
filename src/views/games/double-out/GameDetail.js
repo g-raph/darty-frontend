@@ -96,7 +96,7 @@ class GameDetail extends Component {
       return <p>No game, sorry</p>;
     } else {
       arrangeScores();
-      console.log('STATE', this.state);
+      console.log('GAMESTATE', this.state);
     }
     return (
       <>
